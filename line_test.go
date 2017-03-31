@@ -174,6 +174,36 @@ func TestDirection(t *testing.T) {
 	}
 }
 
+func TestAngle(t *testing.T) {
+	lines := []*Line{
+		NewLine(NewPoint(0, 0), NewPoint(1, 0)),
+		NewLine(NewPoint(0, 0), NewPoint(0, 1)),
+		NewLine(NewPoint(0, 0), NewPoint(-1, 0)),
+		NewLine(NewPoint(0, 0), NewPoint(0, -1)),
+		NewLine(NewPoint(0, 0), NewPoint(1, 1)),
+		NewLine(NewPoint(0, 0), NewPoint(-1, 1)),
+		NewLine(NewPoint(0, 0), NewPoint(-1, -1)),
+		NewLine(NewPoint(0, 0), NewPoint(1, -1)),
+	}
+
+	answers := []float64{
+		0,
+		math.Pi / 2,
+		math.Pi,
+		3 * math.Pi / 2,
+		math.Pi / 4,
+		math.Pi / 2 + math.Pi / 4,
+		math.Pi + math.Pi / 4,
+		3 * math.Pi / 2 + math.Pi / 4,
+	}
+
+	for i, v := range answers {
+		if d := lines[i].Angle(); d != v {
+			t.Errorf("line, angle expected %f, got %f", v, d)
+		}
+	}
+}
+
 func TestLineDistance(t *testing.T) {
 	l := NewLine(NewPoint(0, 0), NewPoint(3, 4))
 	if d := l.Distance(); d != 5 {

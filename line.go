@@ -103,6 +103,29 @@ func (l *Line) Direction() float64 {
 	return math.Atan2(l.b[1]-l.a[1], l.b[0]-l.a[0])
 }
 
+// Angle in radians range from 0 to ~2*Pi
+func (l *Line) Angle() float64 {
+	var result float64
+	if l.a[0] == l.b[0] {
+		if l.b[1] > l.a[1] {
+			result = 0.5 * math.Pi
+		} else {
+			result = 1.5 * math.Pi
+		}
+	} else {
+		result = math.Atan((l.b[1]-l.a[1])/(l.b[0]-l.a[0]))
+	}
+	if l.b[0] < l.a[0] {
+		result = result + math.Pi
+	}
+
+	if result < 0 {
+		result = result + 2 * math.Pi
+	}
+
+	return result
+}
+
 // Project returns the normalized distance of the point on the line nearest the given point.
 // Returned values may be outside of [0,1]. This function is the opposite of Interpolate.
 func (l *Line) Project(point *Point) float64 {
