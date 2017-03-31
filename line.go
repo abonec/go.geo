@@ -113,14 +113,14 @@ func (l *Line) Angle() float64 {
 			result = 1.5 * math.Pi
 		}
 	} else {
-		result = math.Atan((l.b[1]-l.a[1])/(l.b[0]-l.a[0]))
+		result = math.Atan((l.b[1] - l.a[1]) / (l.b[0] - l.a[0]))
 	}
 	if l.b[0] < l.a[0] {
 		result = result + math.Pi
 	}
 
 	if result < 0 {
-		result = result + 2 * math.Pi
+		result = result + 2*math.Pi
 	}
 
 	return result

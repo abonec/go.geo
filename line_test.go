@@ -192,9 +192,9 @@ func TestAngle(t *testing.T) {
 		math.Pi,
 		3 * math.Pi / 2,
 		math.Pi / 4,
-		math.Pi / 2 + math.Pi / 4,
-		math.Pi + math.Pi / 4,
-		3 * math.Pi / 2 + math.Pi / 4,
+		math.Pi/2 + math.Pi/4,
+		math.Pi + math.Pi/4,
+		3*math.Pi/2 + math.Pi/4,
 	}
 
 	for i, v := range answers {
